@@ -1,22 +1,22 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from './Button';
 import { X } from 'lucide-react';
 
 export function ExitIntent() {
   const [showPopup, setShowPopup] = useState(false);
+  const [hasClosedPopup, setHasClosedPopup] = useState(
+    localStorage.getItem('exitIntentClosed') === 'true'
+  );
+
+  // Usando useCallback para manter a mesma referência da função entre renderizações
+  const handleMouseLeave = useCallback((e: MouseEvent) => {
+    if (e.clientY <= 0 && !hasClosedPopup) {
+      setShowPopup(true);
+    }
+  }, [hasClosedPopup]);
 
   useEffect(() => {
-    // Verificar se o usuário já fechou o popup nesta sessão
-    const hasClosedPopup = localStorage.getItem('exitIntentClosed') === 'true';
-    
-    const handleMouseLeave = (e: MouseEvent) => {
-      // Apenas mostrar o popup se o usuário ainda não o fechou
-      if (e.clientY <= 0 && !hasClosedPopup) {
-        setShowPopup(true);
-      }
-    };
-
     // Esperar alguns segundos antes de habilitar o exit intent
     const timer = setTimeout(() => {
       // Apenas adicionar o evento se o usuário ainda não fechou o popup
@@ -29,11 +29,12 @@ export function ExitIntent() {
       clearTimeout(timer);
       document.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, []);
+  }, [hasClosedPopup, handleMouseLeave]);
 
   // Função para fechar o popup e salvar essa informação
   const closePopup = () => {
     setShowPopup(false);
+    setHasClosedPopup(true);
     localStorage.setItem('exitIntentClosed', 'true');
   };
 
