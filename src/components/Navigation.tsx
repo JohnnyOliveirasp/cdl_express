@@ -19,6 +19,7 @@ export function Navigation() {
         <li><a href="#objecoes" className="text-base md:text-lg font-medium hover:text-accent transition-colors py-2 px-1 inline-block">Objecções</a></li>
         <li><a href="#faq" className="text-base md:text-lg font-medium hover:text-accent transition-colors py-2 px-1 inline-block">FAQ</a></li>
         <li><a href="#solutions" className="text-base md:text-lg font-medium hover:text-accent transition-colors py-2 px-1 inline-block">Soluções</a></li>
+        <li><a href="#oQueVaiAprender" className="text-base md:text-lg font-medium hover:text-accent transition-colors py-2 px-1 inline-block">O que vai aprender</a></li>
         <li><a href="#investimento" className="text-base md:text-lg font-medium hover:text-accent transition-colors py-2 px-1 inline-block">Investimento</a></li>
       </ul>
     </motion.nav>

@@ -29,7 +29,7 @@ export function Benefits() {
     <Section
       id="beneficios"
       title="🚀 Imagine Sua Vida Depois de Passar na Prova!"
-      dark
+      className="bg-accent bg-opacity-15 text-primary-dark"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center max-w-6xl mx-auto">
         <motion.div

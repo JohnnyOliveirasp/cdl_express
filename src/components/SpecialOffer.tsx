@@ -15,7 +15,7 @@ export function SpecialOffer() {
   return (
     <Section
       id="investimento"
-      className="bg-accent bg-opacity-15 text-primary-dark" 
+      dark
       title="O INVESTIMENTO">
       <div ref={ref} className="max-w-5xl mx-auto">
         <motion.h3

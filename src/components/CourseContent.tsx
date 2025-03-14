@@ -35,6 +35,7 @@ export function CourseContent() {
 
   return (
     <Section
+      id="oQueVaiAprender"
       dark
       title="📚 O Que Você Vai Aprender no Curso CDL Express?"
       subtitle="Este curso foi criado para que você passe na prova da CDL de forma rápida, sem complicação e sem precisar falar inglês fluentemente!"

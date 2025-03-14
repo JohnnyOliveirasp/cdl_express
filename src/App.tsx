@@ -1,8 +1,7 @@
 import { Hero } from './components/Hero';
-// import { Section } from './components/Section';
 import { Testimonials } from './components/Testimonials';
 import { Benefits } from './components/Benefits';
-// import { CourseContent } from './components/CourseContent';
+import { CourseContent } from './components/CourseContent';
 import { Solutions } from './components/Solutions';
 import { FAQ } from './components/FAQ';
 import { SpecialOffer } from './components/SpecialOffer';
@@ -38,6 +37,9 @@ function App() {
       
       {/* 6. Seção "Depoimentos/Provas" */}
       <Testimonials type="success" />
+      
+      {/* 7. Demonstração do Curso */}
+      <CourseContent />
       
       {/* 8. Bloco Triplo - 8a. A História de Origem */}
       {/* <VideoSection /> */}
