@@ -44,6 +44,7 @@ export function ValueProposition() {
 
   return (
     <Section
+      id="propostaDeValor"
       title="PROPOSTA DE VALOR"
       dark
     >

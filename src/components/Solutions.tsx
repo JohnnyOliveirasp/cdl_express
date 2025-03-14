@@ -43,6 +43,7 @@ export function Solutions({ className = '' }: SolutionsProps) {
 
   return (
     <Section
+      id="solutions"
       title="🎯 Como o Curso Resolve Seus Problemas?"
       className={`${className} bg-accent bg-opacity-15 text-primary-dark`}
     >

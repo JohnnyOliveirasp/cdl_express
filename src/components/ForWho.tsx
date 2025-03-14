@@ -31,7 +31,7 @@ export function ForWho() {
 
   return (
     <Section
-      id="para-quem"
+      id="paraQuem"
       title="Para Quem Destina-se este curso ?"
       className="bg-accent bg-opacity-15 text-primary-dark"
     >

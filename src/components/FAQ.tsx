@@ -35,6 +35,7 @@ export function FAQ() {
 
   return (
     <Section
+      id="faq"
       dark
       title="❓ Suas Dúvidas Respondidas"
     >

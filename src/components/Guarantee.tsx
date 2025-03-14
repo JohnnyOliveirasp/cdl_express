@@ -21,8 +21,9 @@ export function Guarantee() {
 
   return (
     <Section 
-     title="GARANTIAS"
-     dark>
+      id="garantia"
+      title="GARANTIAS"
+      dark>
       <div 
         ref={ref} 
         className="max-w-5xl mx-auto border border-[#CFAC78] rounded-lg p-8 shadow-lg"

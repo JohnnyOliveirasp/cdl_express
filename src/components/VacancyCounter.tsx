@@ -3,14 +3,12 @@ import { useEffect, useState } from 'react';
 interface VacancyCounterProps {
   initialCount?: number;
   minCount?: number;
-  intervalMinutes?: number;
   className?: string;
 }
 
 export function VacancyCounter({
   initialCount = 10,
   minCount = 1,
-  intervalMinutes = 1,
   className = '',
 }: VacancyCounterProps) {
   // Verificamos o localStorage para manter a contagem persistente entre recargas da página
@@ -23,18 +21,17 @@ export function VacancyCounter({
         const count = parseInt(storedCount);
         const lastUpdated = parseInt(storedTime);
         const now = Date.now();
-        const minutesPassed = Math.floor((now - lastUpdated) / (1000 * 60));
+        const hoursPassed = (now - lastUpdated) / (1000 * 60 * 60);
         
-        // Calculamos quantas vagas devem ter sido reduzidas desde a última visita
-        let newCount = Math.max(count - minutesPassed, minCount);
-        
-        // Atualizamos o localStorage se o valor mudou
-        if (newCount !== count) {
-          localStorage.setItem('vacanciesRemaining', newCount.toString());
+        // Verificamos se passaram 24 horas desde a última atualização
+        if (hoursPassed >= 24) {
+          // Reseta o contador após 24h de inatividade
+          localStorage.setItem('vacanciesRemaining', initialCount.toString());
           localStorage.setItem('vacanciesLastUpdated', now.toString());
+          return initialCount;
         }
         
-        return newCount;
+        return Math.max(count, minCount);
       }
       
       // Se não houver dados no localStorage, inicializamos
@@ -63,11 +60,25 @@ export function VacancyCounter({
       });
     };
     
-    // Configuramos o intervalo (convertendo minutos para milissegundos)
-    const interval = setInterval(decrementVacancies, intervalMinutes * 60 * 1000);
+    // Configuramos intervalo aleatório entre 60-90 segundos
+    const getRandomInterval = () => {
+      return Math.floor(Math.random() * (90 - 60 + 1) + 60) * 1000; // 60-90 segundos em ms
+    };
     
-    return () => clearInterval(interval);
-  }, [minCount, intervalMinutes]);
+    // Inicializamos o primeiro temporizador
+    let timerId = setTimeout(function runTimer() {
+      decrementVacancies();
+      
+      // Se ainda não atingimos o mínimo, programamos o próximo decremento
+      if (vacancies > minCount) {
+        // Recalculamos o intervalo para cada decremento
+        timerId = setTimeout(runTimer, getRandomInterval());
+      }
+    }, getRandomInterval());
+    
+    // Limpa o temporizador na desmontagem
+    return () => clearTimeout(timerId);
+  }, [vacancies, minCount]);
   
   return (
     <p className={`animate-pulse ${className}`}>

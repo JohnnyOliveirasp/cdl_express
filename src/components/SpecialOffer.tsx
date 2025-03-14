@@ -13,7 +13,10 @@ export function SpecialOffer() {
   });
 
   return (
-    <Section className="bg-accent bg-opacity-15 text-primary-dark" title="O INVESTIMENTO">
+    <Section
+      id="investimento"
+      className="bg-accent bg-opacity-15 text-primary-dark" 
+      title="O INVESTIMENTO">
       <div ref={ref} className="max-w-5xl mx-auto">
         <motion.h3
           initial={{ opacity: 0, y: 20 }}

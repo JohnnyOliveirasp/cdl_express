@@ -27,6 +27,7 @@ export function Benefits() {
 
   return (
     <Section
+      id="beneficios"
       title="🚀 Imagine Sua Vida Depois de Passar na Prova!"
       dark
     >

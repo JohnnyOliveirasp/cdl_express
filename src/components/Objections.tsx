@@ -25,6 +25,7 @@ export function Objections() {
 
   return (
     <Section
+      id="objecoes"
       className="bg-accent bg-opacity-15 text-primary-dark"
       title="OBJEÇÕES PRINCIPAIS"
       subtitle="Talvez você ainda tenha algumas dúvidas..."
